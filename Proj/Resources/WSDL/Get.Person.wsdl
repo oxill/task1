@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:tns="http://xmlns.example.com/1501069078572" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="ProjWeb.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Untitled" targetNamespace="http://xmlns.example.com/1501069078572">
+    <wsdl:types>
+        <xs:schema xmlns="ProjWeb.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="ProjWeb.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="GetPersonRq">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Name" type="xs:string"/>
+                        <xs:element name="Surname" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetPersonRs">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Id" type="xs:string" minOccurs="0"/>
+                        <xs:element name="BirthDate" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="Get.Person">
+        <wsdl:port name="PortTypeEndpoint0" binding="tns:PortTypeEndpoint0Binding">
+            <soap:address location="http://localhost:8888/Processes/Out/Web-Services/WSDL-service0.serviceagent/PortTypeEndpoint0"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="PortType">
+        <wsdl:operation name="Operation">
+            <wsdl:input message="tns:Rq"/>
+            <wsdl:output message="tns:Rs"/>
+            <wsdl:fault name="fault1" message="tns:Rs"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PortTypeEndpoint0Binding" type="tns:PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Operation">
+            <soap:operation style="document" soapAction="/Processes/Out/Web-Services/WSDL-service0.serviceagent/PortTypeEndpoint0/Operation"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="part1"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="part1"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="Rq">
+        <wsdl:part name="part1" element="ns0:GetPersonRq"/>
+    </wsdl:message>
+    <wsdl:message name="Rs">
+        <wsdl:part name="part1" element="ns0:GetPersonRs"/>
+    </wsdl:message>
+</wsdl:definitions>

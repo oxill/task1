@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:BW="java://com.tibco.pe.core.JavaCustomXPATHFunctions" xmlns:pfx14="http://xmlns.example.com/1501069078572" xmlns:ns="http://www.tibco.com/pe/EngineTypes" xmlns:pfx13="Proj.xsd" xmlns:pfx12="http://www.tibco.com/schemas/Proj.xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:pfx11="openbank/tibco/schemas/cdf/agreement.xsd" xmlns:pfx10="http://www.tibco.com/schemas/Model.xsd" xmlns:pfx5="http://tempuru.org/" xmlns:pfx4="openbank/tibco/schemas/cdf/2.1.6/event.xsd" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:pfx3="openbank/tibco/schemas/cdf/2.1.6/party.xsd" xmlns:pfx2="http://tempuri.org/" xmlns:pfx9="openbank/tibco/schemas/cdf/2.1.6/identificationdocument.xsd" xmlns:pfx8="http://www.tibco.com/schemas/Untitled1/Schema.xsd" xmlns:pfx7="http://www.tibco.com/ns/no_namespace_schema_location/Resources/XSD/CDF/CDF.xsd" xmlns:pfx6="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns14="ProjWeb.xsd" xmlns:ns9="openbank/tibco/schemas/cdf/2.1.6/account.xsd" xmlns:ns5="openbank/tibco/schemas/cdf/3.0/party.xsd" xmlns:ns12="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:ns13="openbank/tibco/schemas/cdf/3.0/common.xsd" xmlns:ns6="openbank/tibco/schemas/cdf/commontypes.xsd" xmlns:ns10="openbank/tibco/schemas/cdf/2.1.6/product.xsd" xmlns:ns7="http://xmlns.tibco.com/bw/activity/xml/render/bytesEnvelope/2003/05" xmlns:pfx="http://www.tibco.com/schemas/Untitled1/Model.xsd" xmlns:ns8="openbank/tibco/schemas/cdf/2.1.6/agreement.xsd" xmlns:ns11="openbank/tibco/schemas/cdf/3.0/file.xsd" xmlns:ns2="http://www.tibco.com/namespaces/tnt/plugins/file" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns1="http://www.tibco.com/pe/DeployedVarsType" xmlns:ns4="http://www.tibco.com/pe/GenerateErrorActivity/InputSchema" xmlns:ns3="http://www.tibco.com/namespaces/tnt/plugins/file/v2" xmlns:tu="java://com.openbank.tibco.utils.TIBCOUtils" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <xsd:import namespace="http://www.tibco.com/ns/no_namespace_schema_location/Resources/XSD/CDF/CDF.xsd" schemaLocation="/Resources/XSD/CDF/CDF.xsd"/>
+    <xsd:import namespace="openbank/tibco/schemas/cdf/identificationdocument.xsd" schemaLocation="/Resources/XSD/CDFv2.1.6/IdentificationDocument.xsd"/>
+    <xsd:import namespace="http://www.tibco.com/schemas/Model.xsd" schemaLocation="/Resources/XSD/Model/Model.xsd"/>
+    <xsd:import namespace="openbank/tibco/schemas/cdf/party.xsd" schemaLocation="/Resources/XSD/CDFv2.1.6/Party.xsd"/>
+    <xsd:import namespace="openbank/tibco/schemas/cdf/commontypes.xsd" schemaLocation="/Resources/XSD/CommonTypes/CDFCommonTypes.xsd"/>
+    <xsd:import namespace="openbank/tibco/schemas/cdf/2.1.6/event.xsd" schemaLocation="/Resources/XSD/CDFv2.1.6/Event.xsd"/>
+    <xsd:import namespace="openbank/tibco/schemas/cdf/2.1.6/agreement.xsd" schemaLocation="/Resources/XSD/CDFv2.1.6/Agreement.xsd"/>
+    <xsd:import namespace="openbank/tibco/schemas/cdf/3.0/party.xsd" schemaLocation="/Resources/XSD/CDFv3.0/Party.xsd"/>
+    <xsd:import namespace="openbank/tibco/schemas/cdf/3.0/file.xsd" schemaLocation="/Resources/XSD/CDFv3.0/File.xsd"/>
+    <xsd:import namespace="openbank/tibco/schemas/cdf/3.0/party.xsd" schemaLocation="/Resources/XSD/Proj/Party.xsd"/>
+    <xsd:import namespace="Proj.xsd" schemaLocation="/Resources/XSD/Proj/Proj.xsd"/>
+    <wsdl:import namespace="http://xmlns.example.com/1501069078572" location="/Resources/WSDL/Get.Person.wsdl"/>
+    <pd:name>Processes/Out/Edit.Person.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType>
+        <xsd:element name="root">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="Name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="Surname" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+    </pd:startType>
+    <pd:startX>81</pd:startX>
+    <pd:startY>73</pd:startY>
+    <pd:returnBindings>
+        <pfx2:PushSoapFileOut>
+            <parameters>
+                <pfx2:pushFileResponse>
+                    <pfx2:pushFileResult>
+                        <xsl:value-of select="$s2-Sync-Send-Single-Request/root/ResponseInfo/CDF/Request[1]/Status/StatusCode"/>
+                    </pfx2:pushFileResult>
+                    <pfx2:Severity>
+                        <xsl:value-of select="'Info'"/>
+                    </pfx2:Severity>
+                </pfx2:pushFileResponse>
+            </parameters>
+        </pfx2:PushSoapFileOut>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endX>588</pd:endX>
+    <pd:endY>73</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1307530277783</pd:targetNamespace>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>844</pd:x>
+        <pd:y>73</pd:y>
+        <pd:handler>true</pd:handler>
+        <config>
+            <catchAll>true</catchAll>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="Generate Error">
+        <pd:type>com.tibco.pe.core.GenerateErrorActivity</pd:type>
+        <pd:resourceType>ae.activities.throw</pd:resourceType>
+        <pd:x>219</pd:x>
+        <pd:y>189</pd:y>
+        <config>
+            <faultName/>
+        </config>
+        <pd:inputBindings>
+            <ns4:ActivityInput>
+                <message>
+                    <xsl:value-of select="'Error SOAP'"/>
+                </message>
+            </ns4:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="JMS Queue Sender">
+        <pd:type>com.tibco.plugin.jms.JMSQueueSendActivity</pd:type>
+        <pd:resourceType>ae.activities.JMSQueueSendActivity</pd:resourceType>
+        <pd:description>Отправка ответа в Model</pd:description>
+        <pd:x>461</pd:x>
+        <pd:y>73</pd:y>
+        <config>
+            <PermittedMessageType>Text</PermittedMessageType>
+            <SessionAttributes>
+                <transacted>false</transacted>
+                <acknowledgeMode>1</acknowledgeMode>
+                <maxSessions>1</maxSessions>
+                <destination>%%Vars/Zone%%.proj.Party.Edit.Person.In</destination>
+            </SessionAttributes>
+            <ConfigurableHeaders>
+                <JMSDeliveryMode>PERSISTENT</JMSDeliveryMode>
+                <JMSExpiration>0</JMSExpiration>
+                <JMSPriority>4</JMSPriority>
+            </ConfigurableHeaders>
+            <ConnectionReference>/Resources/JMS/JMS Data Connection.sharedjmscon</ConnectionReference>
+        </config>
+        <pd:inputBindings>
+            <ns12:ActivityInput>
+                <destinationQueue>
+                    <xsl:value-of select="concat($_globalVariables/ns1:GlobalVariables/Vars/Zone, '.proj.Party.Edit.Person.In')"/>
+                </destinationQueue>
+                <Body>
+                    <xsl:value-of select="tib:render-xml($Map-Data/pfx13:Party, true(), true())"/>
+                </Body>
+            </ns12:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="JMS-Queue-Sender-Error">
+        <pd:type>com.tibco.plugin.jms.JMSQueueSendActivity</pd:type>
+        <pd:resourceType>ae.activities.JMSQueueSendActivity</pd:resourceType>
+        <pd:x>716</pd:x>
+        <pd:y>73</pd:y>
+        <config>
+            <PermittedMessageType>XML Text</PermittedMessageType>
+            <SessionAttributes>
+                <transacted>false</transacted>
+                <acknowledgeMode>1</acknowledgeMode>
+                <maxSessions>1</maxSessions>
+                <destination>%%Vars/Zone%%.proj.Party.Edit.Person.In</destination>
+            </SessionAttributes>
+            <ConfigurableHeaders>
+                <JMSDeliveryMode>PERSISTENT</JMSDeliveryMode>
+                <JMSExpiration>0</JMSExpiration>
+                <JMSPriority>4</JMSPriority>
+            </ConfigurableHeaders>
+            <ConnectionReference>/Resources/JMS/JMS Data Connection.sharedjmscon</ConnectionReference>
+            <InDataxsdString>
+                <xsd:element name="root">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Error" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </InDataxsdString>
+        </config>
+        <pd:inputBindings>
+            <ns12:ActivityInput>
+                <destinationQueue>
+                    <xsl:value-of select="concat($_globalVariables/ns1:GlobalVariables/Vars/Zone, '.proj.Party.Edit.Person.In')"/>
+                </destinationQueue>
+                <replyToQueue>
+                    <xsl:value-of select="$_globalVariables/ns1:GlobalVariables/Vars/Zone"/>
+                </replyToQueue>
+                <Body>
+                    <root>
+                        <xsl:if test="$_error/ns:ErrorReport/Msg">
+                            <Error>
+                                <xsl:value-of select="$_error/ns:ErrorReport/Msg"/>
+                            </Error>
+                        </xsl:if>
+                    </root>
+                </Body>
+            </ns12:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Map Data">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>343</pd:x>
+        <pd:y>73</pd:y>
+        <config>
+            <element ref="pfx13:Party"/>
+        </config>
+        <pd:inputBindings>
+            <pfx13:Party>
+                <pfx13:Id>
+                    <xsl:value-of select="$SOAPRequestReply/outputMessage/ns14:GetPersonRs/ns14:Id"/>
+                </pfx13:Id>
+                <pfx13:Surname>
+                    <xsl:value-of select="$Start/root/Surname"/>
+                </pfx13:Surname>
+                <pfx13:Name>
+                    <xsl:value-of select="$Start/root/Name"/>
+                </pfx13:Name>
+                <pfx13:BirthDate>
+                    <xsl:value-of select="$SOAPRequestReply/outputMessage/ns14:GetPersonRs/ns14:BirthDate"/>
+                </pfx13:BirthDate>
+            </pfx13:Party>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="SOAPRequestReply">
+        <pd:type>com.tibco.plugin.soap.SOAPSendReceiveActivity</pd:type>
+        <pd:resourceType>ae.activities.SOAPSendReceiveUI</pd:resourceType>
+        <pd:x>219</pd:x>
+        <pd:y>73</pd:y>
+        <config>
+            <timeout>5</timeout>
+            <soapAttachmentStyle>SwA</soapAttachmentStyle>
+            <timeoutType>Seconds</timeoutType>
+            <service>pfx14:Get.Person</service>
+            <servicePort>PortTypeEndpoint0</servicePort>
+            <operation>Operation</operation>
+            <soapAction>/Processes/Out/Web-Services/WSDL-service0.serviceagent/PortTypeEndpoint0/Operation</soapAction>
+            <endpointURL>http://localhost:5555/Processes/Out/Web-Services/WSDL-service0.serviceagent/PortTypeEndpoint0</endpointURL>
+            <authScheme>NONE</authScheme>
+        </config>
+        <pd:inputBindings>
+            <inputMessage>
+                <ns14:GetPersonRq>
+                    <ns14:Name>
+                        <xsl:value-of select="$Start/root/Name"/>
+                    </ns14:Name>
+                    <ns14:Surname>
+                        <xsl:value-of select="$Start/root/Surname"/>
+                    </ns14:Surname>
+                </ns14:GetPersonRq>
+            </inputMessage>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
+        <pd:to>JMS-Queue-Sender-Error</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>JMS Queue Sender</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>JMS-Queue-Sender-Error</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Map Data</pd:from>
+        <pd:to>JMS Queue Sender</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>SOAPRequestReply</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SOAPRequestReply</pd:from>
+        <pd:to>Map Data</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SOAPRequestReply</pd:from>
+        <pd:to>Generate Error</pd:to>
+        <pd:xpathDescription>Error</pd:xpathDescription>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-65536</pd:lineColor>
+        <pd:conditionType>error</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

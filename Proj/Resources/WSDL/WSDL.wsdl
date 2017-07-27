@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:ns2="ProjWeb.xsd" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://integration.openbank.ru/schemas/Adapters_IVR/IVR_GetTrace.xsd" xmlns:tns="http://xmlns.example.com/1501066622147" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.example.com/1501066622147">
+    <import namespace="ProjWeb.xsd" location="../XSD/Proj/ProjWeb.xsd"/>
+    <message name="Rq">
+        <part name="part1" element="ns2:GetPersonRq"/>
+    </message>
+    <message name="Rs">
+        <part name="part1" element="ns2:GetPersonRs"/>
+    </message>
+    <portType name="PortType">
+        <operation name="Operation">
+            <input message="tns:Rq"/>
+            <output message="tns:Rs"/>
+            <fault name="fault1" message="tns:Rs"/>
+        </operation>
+    </portType>
+</definitions>

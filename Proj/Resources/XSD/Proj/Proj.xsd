@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="Proj.xsd"
+	 targetNamespace="Proj.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">	
+	<xs:element name="Party" type="T_PersonalParty"/>	
+	<xs:complexType name="T_PersonalParty">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий информацию по ФЛ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>			
+			<xs:element name="Id" type="xs:string" minOccurs="0"/>						
+			<xs:element name="Surname" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:element>						
+			<xs:element name="BirthDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>						
+</xs:schema>

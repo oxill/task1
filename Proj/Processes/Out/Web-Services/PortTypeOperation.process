@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns="ProjWeb.xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlPfx="http://xmlns.example.com/1501066622147" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions">
+    <wsdl:import namespace="http://xmlns.example.com/1501066622147" location="/Resources/WSDL/WSDL.wsdl"/>
+    <pd:name>Processes/Out/Web-Services/PortTypeOperation.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType wsMsgRef="wsdlPfx:Rq"/>
+    <pd:startX>144</pd:startX>
+    <pd:startY>82</pd:startY>
+    <pd:returnBindings>
+        <wsdlPfx:Rs>
+            <part1>
+                <ns:GetPersonRs>
+                    <xsl:if test="$Map-Data/root/Id">
+                        <ns:Id>
+                            <xsl:value-of select="$Map-Data/root/Id"/>
+                        </ns:Id>
+                    </xsl:if>
+                    <xsl:if test="$Map-Data/root/Birthdate">
+                        <ns:BirthDate>
+                            <xsl:value-of select="$Map-Data/root/Birthdate"/>
+                        </ns:BirthDate>
+                    </xsl:if>
+                </ns:GetPersonRs>
+            </part1>
+        </wsdlPfx:Rs>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType wsMsgRef="wsdlPfx:Rs"/>
+    <pd:endX>454</pd:endX>
+    <pd:endY>86</pd:endY>
+    <pd:errorSchemas>
+        <Schema1 wsMsgRef="wsdlPfx:Rs"/>
+    </pd:errorSchemas>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1501069078777</pd:targetNamespace>
+    <pd:activity name="Map Data">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>292</pd:x>
+        <pd:y>85</pd:y>
+        <config>
+            <element>
+                <xsd:element name="root">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Name" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="SurName" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Birthdate" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Id" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </element>
+        </config>
+        <pd:inputBindings>
+            <root>
+                <Name>
+                    <xsl:value-of select="$Start/wsdlPfx:Rq/part1/ns:GetPersonRq/ns:Name"/>
+                </Name>
+                <SurName>
+                    <xsl:value-of select="$Start/wsdlPfx:Rq/part1/ns:GetPersonRq/ns:Surname"/>
+                </SurName>
+                <Birthdate>
+                    <xsl:value-of select="current-date()"/>
+                </Birthdate>
+                <Id>
+                    <xsl:value-of select="generate-id()"/>
+                </Id>
+            </root>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>Map Data</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Map Data</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>
